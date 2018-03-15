@@ -34,22 +34,16 @@ class gridViewModel
     }
 
     public onOkClicked(){
-        return JSON.stringify(this.parameters);
+        return JSON.stringify(this.parameters());
     }
 }
 
-var contributionReturnValue = (function() {
-    return {
-        onOkClicked: function() {
-            return "";
-        }
-    }
-}());
-
 var vm = new gridViewModel();
-ko.applyBindings(vm)
-var config: configuration = VSS.getConfiguration();
-// Register the onOkyClicked callback.
-VSS.register("sachinma.sample-extension.my-task-editor-extension", vm);
-VSS.notifyLoadSucceeded(); 
+ko.applyBindings(vm);
+var config: configuration = VSS.getConfiguration(); 
 vm.initialize(config.inputValues[config.target]);
+
+VSS.register("sachinma.sample-extension.my-task-editor-extension", vm);
+VSS.notifyLoadSucceeded();
+
+
